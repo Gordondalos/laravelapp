@@ -14,9 +14,12 @@ http://your-app.dev/register
 миграции php artisan migrate, после этого можно регистрироваться
 
 
+## Подружить blade с angular
+
+нужно переж выводом ангуляра поставить '@'
+
 ## Просмотр текущих роутов
 php artisan route:list
-
 
 ##Создание контроллера
     php artisan make:controller + Название контролера
