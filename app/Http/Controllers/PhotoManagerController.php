@@ -11,10 +11,14 @@ use App\Queryfixer;
 class photoManagerController extends Controller
 {
     public function index(){
-
 	    $queryfixer = Queryfixer:: all();
-
 	    return view('welcome',['queryfixer'=>$queryfixer]);
+    }
+
+    public function photo_add(){
+
+    	$one = $_REQUEST['q'];
+	    return view('onefoto',['one'=>$one]);
     }
 }
 

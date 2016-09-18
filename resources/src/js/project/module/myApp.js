@@ -22,8 +22,8 @@ myApp.controller("PhotoController", ["$scope",'$http', function ($scope, $http) 
             arr_src.push($(item).attr('href'));
         });
 
-        that.q.photos = JSON.stringify(arr_src);
-        that.q.data_send = new Date();
+        that.querys.photos = JSON.stringify(arr_src);
+        that.querys.data_send = new Date();
 
         // console.log(JSON.stringify($scope.q));
         // $http.post("ajax.php",  JSON.stringify($scope.q)).success(function (answer) {
@@ -31,9 +31,9 @@ myApp.controller("PhotoController", ["$scope",'$http', function ($scope, $http) 
         //
         // });
 
-        $.post("ajax.php",
+        $.post("build/ajax.php",
             {
-                add: that.q,
+                add: that.querys,
             },
             onAjaxSuccess
         );
@@ -44,32 +44,23 @@ myApp.controller("PhotoController", ["$scope",'$http', function ($scope, $http) 
         }
     };
 
-    $scope.v = function () {
-        var loaction = window.location.href;
-        var res = loaction.split("q=")[1];
-        if(res){
-            return res;
-        }
-    }();
+
 
     $scope.respons =  function () {
-        var qr = JSON.parse($('#response').val());
-        return qr;
+        if($('#response').hasClass('response')){
+            var qr = JSON.parse($('#response').val());
+            return qr;
+        }
+
     }();
 
-    $scope.q =  {
-        photos: '',
-        client: '',
-        date: '',
-        number: 0,
-        partner: 0,
-        shop: ''
+    $scope.querys = function () {
+        if($('#resp').hasClass('resp')){
+            var qr = JSON.parse($('#resp').val());
+            return qr;
+        }
 
-    };
-
-
-
-
+    }();
 
 }]);
 
