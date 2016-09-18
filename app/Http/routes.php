@@ -18,7 +18,12 @@
 Route::get('/', ['as'=> 'queryfixer', 'uses'=>'photoManagerController@index']);
 
 Route::get('/photo_add', ['as'=> 'photo_add', 'uses'=>'photoManagerController@photo_add']);
-//Route::get('/', 'photoManagerController@index');
+
+Route::get('/photo/create', ['as'=> 'photo.create', 'uses'=>'photoManagerController@create']);
+
+
+
+//$router->resources('Queryfixer','photoManagerController');
 
 Route::auth();
 
