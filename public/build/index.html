@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="ru"> <!--<![endif]-->
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>Заголовок</title>
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="img/favicon/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+
+
+
+</head>
+
+<body ng-app="myApp">
+
+<section class="section_1 bg-faded">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 p-x-0">
+                <nav class="navbar bavbar-light bg-faded">
+                    <div class="col-sm-1 col-xs-2 p-x-0">
+                        <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse"
+                                data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                            &#9776;
+                        </button>
+                    </div>
+                    <div class="col-xs-10 col-sm-12">
+                        <div class="row">
+                            <div class="input-group ">
+                                <input ng-model="search" type="text" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-secondary" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collapse navbar-toggleable-xs p-t-1" id="exCollapsingNavbar2">
+                        <a class="navbar-brand" href="#">Photo manager</a>
+                        <div class="clearfix hidden-sm-up"></div>
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Features</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Pricing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<div ng-controller="PhotoController">
+    <section class="section_2">
+        <div class="container">
+            <div class="row p-y-1" ng-repeat="q in qr| filter:search" ng-class="$odd ? 'odd' : 'even'">
+                <div class="col-xs-8">
+                    <ul class="list-unstyled">
+                        <li><span>Магазин</span> <b>{{ q.shop }}</b></li>
+                        <li><span>Клиент</span> <b>{{ q.client }}</b></li>
+                        <li><span>Номер посылки</span> <b>{{ q.number }}</b></li>
+                        <li><span>Партнер</span> <b>{{ q.partner }}</b></li>
+                    </ul>
+                </div>
+                <div class="col-xs-4 text-xs-center">
+                    <a href="photo_add.html?q={{ q.number }}" class="add_button btn btn-primary m-t-2"><i class="fa fa-camera" aria-hidden="true"></i> add</a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+
+
+
+<!--[if lt IE 9]>
+<script src="libs/html5shiv/es5-shim.min.js"></script>
+<script src="libs/html5shiv/html5shiv.min.js"></script>
+<script src="libs/html5shiv/html5shiv-printshiv.min.js"></script>
+<script src="libs/respond/respond.min.js"></script>
+<![endif]-->
+
+
+<script src="libs/modernizr/modernizr.js"></script>
+<script src="libs/jquery/jquery-1.11.2.min.js"></script>
+<script src="libs/waypoints/waypoints.min.js"></script>
+<script src="libs/animate/animate-css.js"></script>
+<script src="libs/plugins-scroll/plugins-scroll.js"></script>
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="js/vendor/jquery.ui.widget.js"></script>
+<!-- The Templates plugin is included to render the upload/download listings -->
+<script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- blueimp Gallery script -->
+<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="js/vendor/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="js/vendor/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="js/vendor/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="js/vendor/jquery.fileupload-image.js"></script>
+<!-- The File Upload audio preview plugin -->
+<script src="js/vendor/jquery.fileupload-audio.js"></script>
+
+<!-- The File Upload validation plugin -->
+<script src="js/vendor/jquery.fileupload-validate.js"></script>
+<!-- The File Upload user interface plugin -->
+<script src="js/vendor/jquery.fileupload-ui.js"></script>
+
+
+
+<script src="js/common.js"></script>
+
+</body>
+</html>

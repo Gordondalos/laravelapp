@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="ru"> <!--<![endif]-->
+
+<head>
+
+	<meta charset="utf-8">
+
+	<title>Заголовок</title>
+	<meta name="description" content="">
+
+	<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link rel="stylesheet" href="css/blueimp-gallery.min.css">
+	<link rel="stylesheet" href="css/jquery.fileupload.css">
+	<link rel="stylesheet" href="css/jquery.fileupload-ui.css">
+
+	<link rel="stylesheet" href="css/main.css">
+
+
+
+</head>
+
+<body ng-app="myApp">
+
+<section class="section_1 bg-faded">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 p-x-0">
+				<nav class="navbar bavbar-light bg-faded">
+					<div class="col-sm-1 col-xs-2 p-x-0">
+						<button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse"
+								data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false"
+								aria-label="Toggle navigation">
+							&#9776;
+						</button>
+					</div>
+					<div class="col-xs-10 col-sm-12">
+						<div class="row">
+							<div class="input-group ">
+								<input ng-model="search" type="text" class="form-control" placeholder="Search for...">
+								<span class="input-group-btn">
+                                <button class="btn btn-secondary" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            </span>
+							</div>
+						</div>
+					</div>
+					<div class="collapse navbar-toggleable-xs p-t-1" id="exCollapsingNavbar2">
+						<a class="navbar-brand" href="index.html">Photo manager</a>
+						<div class="clearfix hidden-sm-up"></div>
+						<ul class="nav navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" href="#">Features</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Pricing</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">About</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div ng-controller="PhotoController">
+	<section class="section_3">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 text-xs-center p-t-1 text-sm-left">
+
+					<p>Добавление фотографии к посылке {{q.number}}</p>
+					<p>Клиента {{q.client}}</p>
+				</div>
+				<div class="clearfix m-t-3"></div>
+				<form id="fileupload" action="#" method="POST" enctype="multipart/form-data" class="">
+				<div class="row fileupload-buttonbar">
+					<div class="col-lg-7">
+						<span class="btn btn-success fileinput-button">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span><i class="fa fa-camera" aria-hidden="true"></i> Добавить фото</span>
+                    <input type="file" name="files[]" multiple="">
+                </span>
+						<button type="submit" class="btn btn-primary start">
+							<i class="glyphicon glyphicon-upload"></i>
+							<span><i class="fa fa-upload" aria-hidden="true"></i> Старт</span>
+						</button>
+						<button type="reset" class="btn btn-warning cancel">
+							<i class="glyphicon glyphicon-ban-circle"></i>
+							<span><i class="fa fa-times" aria-hidden="true"></i> Отменить</span>
+						</button>
+						<button type="button" class="btn btn-danger delete">
+							<i class="glyphicon glyphicon-trash"></i>
+							<span><i class="fa fa-trash-o" aria-hidden="true"></i> Удалить</span>
+						</button>
+						<input type="checkbox" class="toggle">
+						<!-- The global file processing state -->
+						<span class="fileupload-process"></span>
+					</div>
+					<!-- The global progress state -->
+					<div class="col-lg-5 fileupload-progress fade">
+						<!-- The global progress bar -->
+						<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+							<div class="progress-bar progress-bar-success" style="width: 0%;"></div>
+						</div>
+						<!-- The extended global progress state -->
+						<div class="progress-extended">&nbsp;</div>
+					</div>
+				</div>
+				<!-- The table listing the files available for upload/download -->
+				<table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+			</form>
+
+				<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+					<div class="slides"></div>
+					<h3 class="title"></h3>
+					<a class="prev">‹</a>
+					<a class="next">›</a>
+					<a class="close">×</a>
+					<a class="play-pause"></a>
+					<ol class="indicator"></ol>
+				</div>
+
+
+				<button ng-click="send()" class="btn btn-primary">Сохранить</button>
+
+
+
+
+
+			</div>
+		</div>
+	</section>
+
+	<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload fade">
+        <td>
+            <span class="preview"></span>
+        </td>
+        <td>
+            <p class="name">{%=file.name%}</p>
+            <strong class="error text-danger"></strong>
+        </td>
+        <td>
+            <p class="size">Processing...</p>
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+        </td>
+        <td>
+            {% if (!i && !o.options.autoUpload) { %}
+                <button class="btn btn-primary start" disabled>
+                    <span><i class="fa fa-upload" aria-hidden="true"></i> Старт</span>
+                </button>
+            {% } %}
+            {% if (!i) { %}
+                <button class="btn btn-warning cancel">
+                    <span><i class="fa fa-times" aria-hidden="true"></i> Отменить</span>
+                </button>
+            {% } %}
+        </td>
+    </tr>
+{% } %}
+</script>
+	<!-- The template to display files available for download -->
+	<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-download fade">
+        <td>
+            <span class="preview">
+                {% if (file.thumbnailUrl) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+                {% } %}
+            </span>
+        </td>
+        <td>
+            <p class="name">
+                {% if (file.url) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+                {% } else { %}
+                    <span>{%=file.name%}</span>
+                {% } %}
+            </p>
+            {% if (file.error) { %}
+                <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+            {% } %}
+        </td>
+        <td>
+            <span class="size">{%=o.formatFileSize(file.size)%}</span>
+        </td>
+        <td>
+            {% if (file.deleteUrl) { %}
+                <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                    <i class="glyphicon glyphicon-trash"></i>
+                    <span><i class="fa fa-trash-o" aria-hidden="true"></i> Удалить</span>
+                </button>
+                <input type="checkbox" name="delete" value="1" class="toggle">
+            {% } else { %}
+                <button class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel</span>
+                </button>
+            {% } %}
+        </td>
+    </tr>
+{% } %}
+</script>
+
+
+</div>
+
+
+<!--[if lt IE 9]>
+<script src="libs/html5shiv/es5-shim.min.js"></script>
+<script src="libs/html5shiv/html5shiv.min.js"></script>
+<script src="libs/html5shiv/html5shiv-printshiv.min.js"></script>
+<script src="libs/respond/respond.min.js"></script>
+<![endif]-->
+
+
+<script src="libs/modernizr/modernizr.js"></script>
+<script src="libs/jquery/jquery-1.11.2.min.js"></script>
+<script src="libs/waypoints/waypoints.min.js"></script>
+<script src="libs/animate/animate-css.js"></script>
+<script src="libs/plugins-scroll/plugins-scroll.js"></script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="js/vendor/jquery.ui.widget.js"></script>
+<!-- The Templates plugin is included to render the upload/download listings -->
+<script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- blueimp Gallery script -->
+<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="js/vendor/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="js/vendor/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="js/vendor/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="js/vendor/jquery.fileupload-image.js"></script>
+<!-- The File Upload audio preview plugin -->
+<script src="js/vendor/jquery.fileupload-audio.js"></script>
+
+<!-- The File Upload validation plugin -->
+<script src="js/vendor/jquery.fileupload-validate.js"></script>
+<!-- The File Upload user interface plugin -->
+<script src="js/vendor/jquery.fileupload-ui.js"></script>
+
+<script src="js/common.js"></script>
+
+</body>
+</html>
