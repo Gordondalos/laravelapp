@@ -76,3 +76,7 @@ php artisan route:list
         	return view('post.index',['posts'=>$posts]); // Передаем полученные данные из контролера в представление
         }
     }
+
+вываливал ошибку 500
+напиал php artisan optimize
+помогло
