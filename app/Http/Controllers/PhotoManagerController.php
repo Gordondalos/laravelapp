@@ -23,19 +23,21 @@ class photoManagerController extends Controller
     }
 
     public function create(Queryfixer $entity, Request $request){
+
     	$data = $_POST['add'];
 	    var_dump($data);
+	    dd($entity);
 
-	    $send_data = array();
-	    $send_data['id_quuery'] = $data['id'];
-	    $send_data['events'] = json_encode($data);
-	    $send_data['user_add'] = Auth::user()->getId();
-		$send_data['id_client'] = 1;
-
-	    dd($send_data);
-
-	    $entity->create($send_data);
-	    return redirect()->route('queryfixer');
+//	    $send_data = array();
+//	    $send_data['id_quuery'] = $data['id'];
+//	    $send_data['events'] = json_encode($data);
+//	    $send_data['user_add'] = Auth::user()->getId();
+//		$send_data['id_client'] = 1;
+//
+//	    dd($send_data);
+//
+//	    $entity->create($send_data);
+//	    return redirect()->route('queryfixer');
 
 
     }

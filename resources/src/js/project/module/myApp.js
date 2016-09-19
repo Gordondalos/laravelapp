@@ -31,17 +31,32 @@ myApp.controller("PhotoController", ["$scope",'$http', function ($scope, $http) 
         //
         // });
 
-        $.post("build/ajax.php",
-            {
-                add: that.querys,
-            },
-            onAjaxSuccess
-        );
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        that.querys._token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type: "POST",
+            url: '/photo/create',
+            data: { add: that.querys },
+            success: function (data) {
+                console.log(data);
+            }
+        });
 
-        function onAjaxSuccess(data)
-        {
-            console.log(data);
-        }
+        // $.post("/photo/create",
+        //     {
+        //         add: that.querys,
+        //     },
+        //     onAjaxSuccess
+        // );
+        //
+        // function onAjaxSuccess(data)
+        // {
+        //     console.log(data);
+        // }
     };
 
 
