@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use Barryvdh\Debugbar\Middleware\Debugbar;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -24,20 +25,31 @@ class photoManagerController extends Controller
 
     public function create(Queryfixer $entity, Request $request){
 
-    	$data = $_POST['add'];
-	    var_dump($data);
-	    dd($entity);
 
-//	    $send_data = array();
-//	    $send_data['id_quuery'] = $data['id'];
-//	    $send_data['events'] = json_encode($data);
-//	    $send_data['user_add'] = Auth::user()->getId();
-//		$send_data['id_client'] = 1;
-//
-//	    dd($send_data);
-//
-//	    $entity->create($send_data);
-//	    return redirect()->route('queryfixer');
+    	$data = $_POST['add'];
+
+	    echo "<pre>";
+	        print_r($entity );
+	    echo "</pre>";
+
+	    $send_data = array();
+	    $send_data['id_quuery'] = $data['id'];
+	    $send_data['events'] = json_encode($data);
+	    $send_data['user_add'] = 1;
+		$send_data['id_client'] = 1;
+
+$entity->id_quuery = $data['id'];
+$entity->events = json_encode($data);
+$entity->user_add = 1;
+$entity->id_client = 1;
+
+	    echo "<pre>";
+	    print_r($entity->events);
+	    echo "</pre>";
+
+die;
+	    $entity->save();
+	    return redirect()->route('queryfixer');
 
 
     }
