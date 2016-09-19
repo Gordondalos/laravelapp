@@ -1,6 +1,11 @@
 ##Созадние приложения
 composer create-project laravel/laravel your-project-name 4.0.
 
+## Запустить встроенный сервер
+php artisan serve
+Laravel development server started on http://localhost:8000
+
+
 ## в 5,2 5,3 нет аунтификации по умолчанию
 для ее создания
 php artisan make:auth

@@ -43,20 +43,14 @@ myApp.controller("PhotoController", ["$scope",'$http', function ($scope, $http) 
             data: { add: that.querys },
             success: function (data) {
                 console.log(data);
+
+                if(data == 200){
+                    window.location.replace("/");
+                }
             }
         });
 
-        // $.post("/photo/create",
-        //     {
-        //         add: that.querys,
-        //     },
-        //     onAjaxSuccess
-        // );
-        //
-        // function onAjaxSuccess(data)
-        // {
-        //     console.log(data);
-        // }
+
     };
 
 

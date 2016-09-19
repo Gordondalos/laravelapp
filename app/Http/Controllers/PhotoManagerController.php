@@ -9,7 +9,7 @@ use App\Queryfixer;
 
 use App\User;
 
-
+use App\Photo;
 
 class photoManagerController extends Controller
 {
@@ -23,33 +23,16 @@ class photoManagerController extends Controller
 	    return view('onefoto',['one'=>$one]);
     }
 
-    public function create(Queryfixer $entity, Request $request){
-
+    public function create(Photo $entity, Request $request){
 
     	$data = $_POST['add'];
+		$entity->id_quuery = $data['id'];
+		$entity->events = json_encode($data);
+		$entity->user_add = 1;
+		$entity->id_client = 1;
 
-	    echo "<pre>";
-	        print_r($entity );
-	    echo "</pre>";
-
-	    $send_data = array();
-	    $send_data['id_quuery'] = $data['id'];
-	    $send_data['events'] = json_encode($data);
-	    $send_data['user_add'] = 1;
-		$send_data['id_client'] = 1;
-
-$entity->id_quuery = $data['id'];
-$entity->events = json_encode($data);
-$entity->user_add = 1;
-$entity->id_client = 1;
-
-	    echo "<pre>";
-	    print_r($entity->events);
-	    echo "</pre>";
-
-die;
 	    $entity->save();
-	    return redirect()->route('queryfixer');
+	    return 200;
 
 
     }
