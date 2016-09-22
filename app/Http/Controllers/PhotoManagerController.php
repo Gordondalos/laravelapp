@@ -11,7 +11,7 @@ use App\User;
 
 use App\Photo;
 
-class photoManagerController extends Controller
+class PhotoManagerController extends Controller
 {
     public function index(Queryfixer $entity){
 	    $queryfixer = $entity->getAll();

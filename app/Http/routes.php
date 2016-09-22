@@ -15,11 +15,35 @@
 //    return view('welcome');
 //});
 
-Route::get('/', ['as'=> 'queryfixer', 'uses'=>'photoManagerController@index']);
 
-Route::get('/photo_add', ['as'=> 'photo_add', 'uses'=>'photoManagerController@photo_add']);
+/**
+ * Роутинг блога
+ * */
+Route::get('/post', ['as'=> 'blog', 'uses'=>'PostController@index']);
 
-Route::post('/photo/create', ['as'=> 'photo.create', 'uses'=>'photoManagerController@create']);
+Route::get('/posts/{slug}', ['as'=> 'get-post', 'uses'=>'PostController@getPost']);
+
+
+/**
+ * Роутинг to do листа
+ *
+ * */
+
+Route::get('/todo', ['as'=> 'todo', 'uses'=>'TodoController@index']);
+Route::get('/todo/show/{id}', ['as'=> 'todo-show', 'uses'=>'TodoController@show']);
+Route::post('/todo/close_task/', ['as'=> 'close_task', 'uses'=>'TodoController@close_task']);
+
+
+
+/**
+ * Роутинг фотографий
+ *
+ * */
+Route::get('/', ['as'=> 'queryfixer', 'uses'=>'PhotoManagerController@index']);
+
+Route::get('/photo_add', ['as'=> 'photo_add', 'uses'=>'PhotoManagerController@photo_add']);
+
+Route::post('/photo/create', ['as'=> 'photo.create', 'uses'=>'PhotoManagerController@create']);
 
 
 //$router->resources('Queryfixer','photoManagerController');

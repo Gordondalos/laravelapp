@@ -7,7 +7,9 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
-        "barryvdh/laravel-debugbar": "dev-master"
+        "laravelcollective/html": "5.2.*",
+        "barryvdh/laravel-debugbar": "dev-master",
+        "illuminate/html": "5.2.*"
 
     },
     "require-dev": {
