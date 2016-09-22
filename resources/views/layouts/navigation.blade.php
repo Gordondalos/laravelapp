@@ -31,7 +31,11 @@
                                 <a class="nav-link" href="/post">Блог</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/todo">Задачи</a>
+                                <a class="nav-link" href="/todo">Все задачи</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('showmy')}}">Мои Задачи</a>
                             </li>
 
                             <!-- Authentication Links -->

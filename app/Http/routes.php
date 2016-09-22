@@ -19,9 +19,9 @@
 /**
  * Роутинг блога
  * */
-Route::get('/post', ['as'=> 'blog', 'uses'=>'PostController@index']);
+Route::get('/post', ['as'=> 'blog', 'uses'=>'PostController@index'])->middleware('auth');
 
-Route::get('/posts/{slug}', ['as'=> 'get-post', 'uses'=>'PostController@getPost']);
+Route::get('/posts/{slug}', ['as'=> 'get-post', 'uses'=>'PostController@getPost'])->middleware('auth');
 
 
 /**
@@ -29,9 +29,10 @@ Route::get('/posts/{slug}', ['as'=> 'get-post', 'uses'=>'PostController@getPost'
  *
  * */
 
-Route::get('/todo', ['as'=> 'todo', 'uses'=>'TodoController@index']);
-Route::get('/todo/show/{id}', ['as'=> 'todo-show', 'uses'=>'TodoController@show']);
-Route::post('/todo/close_task/', ['as'=> 'close_task', 'uses'=>'TodoController@close_task']);
+Route::get('/todo', ['as'=> 'todo', 'uses'=>'TodoController@index'])->middleware('auth');
+Route::get('/todo/showmy', ['as'=> 'showmy', 'uses'=>'TodoController@getUserIssue'])->middleware('auth');
+Route::get('/todo/show/{id}', ['as'=> 'todo-show', 'uses'=>'TodoController@show'])->middleware('auth');
+Route::post('/todo/close_task/', ['as'=> 'close_task', 'uses'=>'TodoController@close_task'])->middleware('auth');
 
 
 
@@ -39,12 +40,11 @@ Route::post('/todo/close_task/', ['as'=> 'close_task', 'uses'=>'TodoController@c
  * Роутинг фотографий
  *
  * */
-Route::get('/', ['as'=> 'queryfixer', 'uses'=>'PhotoManagerController@index']);
+Route::get('/', ['as'=> 'queryfixer', 'uses'=>'PhotoManagerController@index'])->middleware('auth');
 
-Route::get('/photo_add', ['as'=> 'photo_add', 'uses'=>'PhotoManagerController@photo_add']);
+Route::get('/photo_add', ['as'=> 'photo_add', 'uses'=>'PhotoManagerController@photo_add'])->middleware('auth');
 
-Route::post('/photo/create', ['as'=> 'photo.create', 'uses'=>'PhotoManagerController@create']);
-
+Route::post('/photo/create', ['as'=> 'photo.create', 'uses'=>'PhotoManagerController@create'])->middleware('auth');
 
 //$router->resources('Queryfixer','photoManagerController');
 

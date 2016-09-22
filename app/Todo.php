@@ -2,6 +2,10 @@
 
 namespace App;
 
+
+use DB;
+
+
 use Illuminate\Database\Eloquent\Model;
 
 class Todo extends Model
@@ -28,4 +32,13 @@ class Todo extends Model
 		$oneTodo = Todo::where('id','=',$id)->firstOrFail();
 		return true;
 	}
+
+	public static function getUserIssue($id)
+	{
+		$id = (int)$id;
+		$todo = DB::table('todos')->where('user', '=', $id)->get();
+		return $todo;
+	}
+
+
 }

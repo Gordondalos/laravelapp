@@ -65,7 +65,7 @@ https://www.youtube.com/watch?v=3hSJLgRvn-E&list=PLoonZ8wII66gwRthiiZK5UwxIYqNID
     }
 при этом нужно в файле вывода роутера напистаь вывод ошибок
 
-     @foreach($errors->all()->$error)
+     @foreach($errors->all() as $error)
         <div class="errors">{{$error}}</div>
     @endforeach
 
@@ -73,6 +73,13 @@ https://www.youtube.com/watch?v=3hSJLgRvn-E&list=PLoonZ8wII66gwRthiiZK5UwxIYqNID
 ##Созадие и работа с роутерами
 **Например:** 
     Route::get('/', ['as'=> 'posts', 'uses'=>'PostController@index']);
+
+Для того чтобы не пускать не авторизованых пользоватлей на страницы
+к роутерам нужно добавить ->middleware('auth');
+как например тут
+
+    Route::get('/post', ['as'=> 'blog', 'uses'=>'PostController@index'])->middleware('auth');
+
 
 ##Создание модели, миграций
     php artisan make:model + Название модели -m

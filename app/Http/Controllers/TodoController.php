@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
+
 use Illuminate\Http\Request;
 
+use Auth;
 
 use App\Http\Requests;
 
@@ -27,6 +30,16 @@ class TodoController extends Controller
 
 	}
 
+	public function getUserIssue(Todo $entity){
+		$id = Auth::user()->id;
+		$issue = $entity->getUserIssue($id);
+
+
+
+		return view('todo.userIndex',['todos'=>$issue]);
+	}
+
+
 	public function close_task(Todo $entity, Request $request){
 
 		$request->input();
@@ -35,10 +48,8 @@ class TodoController extends Controller
 		$validator = Validator::make(Input::all(), $rules);
 		if($validator->fails()){
 			return Redirect::route('todo-show')->withErrors($validator);
-			// причем в файле отображающим данный роут должно быть реализован вывод ошибок
-			// смотри там реализовано
-
-
+		// причем в файле отображающим данный роут должно быть реализован вывод ошибок
+		// смотри там реализовано
 
 		}
 		$id = $request['id'];
@@ -47,8 +58,6 @@ class TodoController extends Controller
 		if($res){
 			return redirect()->route('todo-show', $id);
 		}
-
-
 
 	}
 }
